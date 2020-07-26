@@ -1,0 +1,9 @@
+export const GET_BORED = 'GET_BORED';
+export const BORED_LOADING = 'BORED_LOADING';
+
+export const GET_QUOTE = 'GET_QUOTE';
+export const QUOTE_LOADING = 'QUOTE_LOADING';
+
+export const STARTINGTIME_CHANGE = 'STARTINGTIME_CHANGE'
+export const ON_CHANGE_MIN = 'ON_CHANGE_MIN'
+export const ON_CHANGE_HR = 'ON_CHANGE_HR'

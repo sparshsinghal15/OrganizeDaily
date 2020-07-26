@@ -1,0 +1,30 @@
+.localSchedule {
+	margin-bottom: 10vmin;
+	.textCard {
+		text-align: 'center';
+		line-height: 0;
+		height: 100%;
+	}
+	.trash {
+		width: 0%;
+		opacity: 0;
+		transition: all 0.2s;
+	}
+	.textCard:hover .trash {
+		width: 37px;
+		opacity: 1;
+	}
+}
+@media only screen and (max-width: 600px) {
+	.localSchedule {
+		.trash {
+			display: none
+		}
+		.textCard {
+			line-height: 1.5;
+			span {
+				width: 90%!important;
+			}
+		}
+	}	
+}
