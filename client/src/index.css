@@ -1,5 +1,16 @@
 @media (max-width: 1000px) {
 	html {
-		font-size: 14px;
+		font-size: 13px;
 	}
+}
+body {
+	background-image: url('https://www.iwallpaper.org/download/simple-blue-wallpaper-26.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
+}
+html {
+	scroll-behavior: smooth;
 }

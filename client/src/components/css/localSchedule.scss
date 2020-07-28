@@ -1,30 +1,43 @@
 .localSchedule {
+	margin: 2vmin;
 	margin-bottom: 10vmin;
 	.textCard {
-		text-align: 'center';
-		line-height: 0;
 		height: 100%;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 1vmin;
+		p {
+			margin: auto auto;
+		}
+		button {
+			visibility: hidden;
+			outline: none;
+			border: none;
+			background: none;
+			display: inline;
+			color: grey;
+			margin-Right: 1rem;
+			font-Size: 1.2rem;
+		}
+		button:hover {
+			transform: skewY(-10deg);
+		}
 	}
-	.trash {
-		width: 0%;
-		opacity: 0;
-		transition: all 0.2s;
-	}
-	.textCard:hover .trash {
-		width: 37px;
-		opacity: 1;
+	.textCard:hover button {
+		visibility: visible;
 	}
 }
 @media only screen and (max-width: 600px) {
 	.localSchedule {
-		.trash {
-			display: none
-		}
 		.textCard {
 			line-height: 1.5;
-			span {
-				width: 90%!important;
+			button {
+				margin: 0;
+				visibility: visible;
 			}
 		}
-	}	
+		.card {
+			padding: 1vmin;
+		}
+	}
 }

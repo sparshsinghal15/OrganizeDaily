@@ -1,0 +1,35 @@
+.projectComponent {
+	color: white;
+	h1 {
+		font-size: 1.5rem;
+		font-weight: 300;
+		margin-top: 2rem;
+	}
+	hr {
+		background-color: white;
+		height: 0.5px;
+	}
+	.card {
+		background-color: rgba(255, 255, 255, 0.103);
+		margin: auto;
+		h2 {
+			color: rgb(255, 255, 255);
+			font-size: 1.8rem;
+			font-weight: 400;
+		}
+		p {
+			color: rgb(255, 255, 255);
+			font-weight: 200;
+		}
+		@media only screen and (max-width: 600px) {
+			input {
+				height: 3rem !important;
+			}
+		}
+	}
+}
+@media only screen and (max-width: 600px) {
+	.currentProjectsRow {
+		margin-bottom: 1.5rem !important;
+	}
+}

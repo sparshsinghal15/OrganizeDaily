@@ -10,6 +10,7 @@ import { Container } from 'reactstrap';
 import LogComponent from './components/LogComponent';
 import HomeComponent from './components/HomeComponent';
 import AppNavbarComponent from './components/AppNavbar';
+import ProjectComponent from './components/ProjectComponent';
 import Schedule from './components/ScheduleComponent';
 
 function App() {
@@ -18,8 +19,9 @@ function App() {
 			<Router>
 				<div className="App">
 					<AppNavbarComponent />
+					<Route exact path="/" component={HomeComponent} />
 					<Container>
-						<Route exact path="/" component={HomeComponent} />
+						<Route path="/project" component={ProjectComponent} />
 						<Route path="/log" component={LogComponent} />
 						<Route path="/schedule" component={Schedule} />
 					</Container>

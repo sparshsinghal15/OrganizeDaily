@@ -1,0 +1,9 @@
+.navbar-dark .navbar-nav .nav-link {
+	color: rgb(216, 215, 215);
+	transition: all ease-in-out 0.1s;
+	text-align: center;
+	font-size: 1.05rem;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+	color: white;
+}

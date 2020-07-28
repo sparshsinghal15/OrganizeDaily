@@ -16,12 +16,14 @@ class Quote extends Component {
 		return (
 			<div>
 				{!this.props.quote.isLoading && this.props.quote.run ? (
-					<Fade in={!this.props.quote.isLoading && this.props.quote.run} tag="h5" className="mt-3">
+					<Fade isOpen={!this.props.quote.isLoading && this.props.quote.run} className="mt-3">
 						<Card
 							style={{
+								backgroundColor: 'rgba(255, 255, 255, 0.3)',
 								boxShadow:
 									'0px 0px 5px rgba(0, 0, 0, 0.2), 0px 0px 8px rgba(0, 0, 0, 0.1), 0px 0px 10px rgba(0, 0, 0, 0.05)',
-								padding: '1rem'
+								padding: '1rem',
+								color: 'white'
 							}}
 						>
 							<CardBody>

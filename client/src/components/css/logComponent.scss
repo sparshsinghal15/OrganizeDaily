@@ -1,0 +1,37 @@
+.logComponent {
+	color: white;
+	margin-bottom: 5rem;
+	h1 {
+		font-size: 1.5rem;
+		font-weight: 300;
+		margin-top: 2rem;
+	}
+	hr {
+		background-color: white;
+		height: 0.5px;
+	}
+	.card {
+		background-color: rgba(255, 255, 255, 0.103);
+		margin: auto;
+		transition: all ease-in-out 0.1s;
+		cursor: pointer;
+		h2 {
+			color: rgb(255, 255, 255);
+			font-size: 1.8rem;
+			font-weight: 400;
+		}
+		p {
+			color: rgb(255, 255, 255);
+			font-weight: 200;
+		}
+	}
+	.card:hover {
+		background-color: rgba(255, 255, 255, 0.274);
+		transform: scale(1.05);
+	}
+	@media only screen and (min-width: 600px) {
+		.extrasCol {
+			border-left: 1px solid rgb(230, 226, 220);
+		}
+	}
+}

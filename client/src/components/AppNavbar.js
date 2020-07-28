@@ -23,9 +23,19 @@ export default class AppNavbar extends Component {
 						'0px 0px 14px rgba(0, 0, 0, 0.8), 0px 0px 8px rgba(0, 0, 0, 0.1), 0px 0px 20px rgba(0, 0, 0, 0.05)'
 				}}
 			>
-				<Navbar color="dark" dark expand="md">
+				<Navbar style={{ backgroundColor: 'rgba(58, 52, 59, 0.4)' }} dark expand="md">
 					<Container className="">
-						<NavbarBrand href="/">Organize Daily</NavbarBrand>
+						<NavbarBrand
+							style={{
+								fontWeight: 600,
+								fontFamily: "'Merriweather', serif",
+								fontSize: '1.5rem',
+								padding: '0.5rem'
+							}}
+							href="/"
+						>
+							Organize Daily
+						</NavbarBrand>
 						<NavbarToggler onClick={this.toggle} />
 						<Collapse isOpen={this.state.isOpen} navbar>
 							<Nav className="ml-auto" navbar>
@@ -33,10 +43,13 @@ export default class AppNavbar extends Component {
 									<NavLink href="/">Home</NavLink>
 								</NavItem>
 								<NavItem>
+									<NavLink href="/schedule">Schedule</NavLink>
+								</NavItem>
+								<NavItem>
 									<NavLink href="/log">Log</NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink href="/schedule">Schedule</NavLink>
+									<NavLink href="/Project">Projects</NavLink>
 								</NavItem>
 								<LoginModal />
 								<RegisterModal />

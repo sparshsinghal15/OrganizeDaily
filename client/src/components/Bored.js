@@ -25,25 +25,27 @@ class BoredComponent extends Component {
 		const data = { ...this.props.bored.data };
 		return (
 			<div>
-				<Button style={{ marginBottom: '1rem', width: '100%' }} color="primary" onClick={this.onClick}>
+				<Button style={{ marginBottom: '1rem', width: '100%' }} color="warning" outline onClick={this.onClick}>
 					Bored ?
 				</Button>
 				{this.props.bored.loading ? (
-					<Spinner style={{ width: '2.1rem', height: '2.1rem', margin: 'auto' }} />
+					<Spinner color="warning" style={{ width: '2.1rem', height: '2.1rem', margin: 'auto' }} />
 				) : null}
 				<Collapse isOpen={!this.props.bored.loading && this.state.load}>
-					<Card>
-						<CardBody>
-							<CardTitle>
-								<span style={{ fontWeight: 600 }}>Activity:</span> {data.activity}
-							</CardTitle>
-							<CardSubtitle>
-								<span style={{ fontWeight: 600 }}>Type:</span>{' '}
-								<span style={{ textTransform: 'capitalize' }}>{data.type}</span>
-							</CardSubtitle>
-							<CardLink>{data.CardLink}</CardLink>
-						</CardBody>
-					</Card>
+					<a href={data.link}>
+						<Card style={{ color: 'white' }}>
+							<CardBody>
+								<CardTitle>
+									<span style={{ fontWeight: 600 }}>Activity:</span> {data.activity}
+								</CardTitle>
+								<CardSubtitle>
+									<span style={{ fontWeight: 600 }}>Type:</span>{' '}
+									<span style={{ textTransform: 'capitalize' }}>{data.type}</span>
+								</CardSubtitle>
+								<CardLink>{data.CardLink}</CardLink>
+							</CardBody>
+						</Card>
+					</a>
 				</Collapse>
 			</div>
 		);
