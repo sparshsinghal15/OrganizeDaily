@@ -76,9 +76,11 @@ export default class HomeComponent extends Component {
 							</Col>
 						</Row>
 						<h3 style={{ textAlign: 'center', marginTop: '3rem' }}>
-							<Button style={{ borderRadius: '2rem' }} color="primary" size="lg">
-								Register for Free Now
-							</Button>
+							<a href="#navbarLink">
+								<Button style={{ borderRadius: '2rem' }} color="primary" size="lg">
+									Register for Free Now
+								</Button>
+							</a>
 						</h3>
 					</div>
 				</Container>

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Button, Row, Col, Card, CardBody, CardText, Input, Badge } from 'reactstrap';
+import { Button, Row, Col, Card, CardBody, CardText, Input, Badge, Form } from 'reactstrap';
 import './css/projectComponent.scss';
 import CreateProjectModal from './CreateProjectModal';
+
+import { deleteProject, completedProject } from '../actions/project';
 
 export class ProjectComponent extends Component {
 	state = {
@@ -24,9 +26,29 @@ export class ProjectComponent extends Component {
 		]
 	};
 	static propTypes = {
-		projects: PropTypes.object.isRequired
+		projects: PropTypes.object.isRequired,
+		deleteProject: PropTypes.func.isRequired,
+		completedProject: PropTypes.func.isRequired
 	};
-
+	onChange = (event) => {
+		this.setState({
+			...this.state,
+			[event.target.name]: event.target.value
+		});
+	};
+	onDeleteSubmit = (name, i, event) => {
+		event.preventDefault();
+		if (name === this.state.name) {
+			this.props.deleteProject(i);
+		}
+	};
+	onCompleteSubmit = (name, i, event) => {
+		event.preventDefault();
+		if (name === this.state.name) {
+			this.props.completedProject(i);
+			this.props.deleteProject(i);
+		}
+	};
 	render() {
 		var today = new Date();
 		const dd = String(today.getDate()).padStart(2, '0');
@@ -47,18 +69,21 @@ export class ProjectComponent extends Component {
 					<span style={{ float: 'right' }}>{today}</span>
 				</h1>
 				<hr />
-				<Row className="d-none d-md-flex" style={{ marginBottom: '1rem', textAlign: 'center' }}>
-					<Col md="9">
-						<Card style={{ backgroundColor: 'rgb(182, 0, 214)' }}>
-							<CardBody style={{ padding: '0.5rem' }}>Project</CardBody>
-						</Card>
-					</Col>
-					<Col md="3">
-						<Card style={{ backgroundColor: 'rgb(182, 0, 214)' }}>
-							<CardBody style={{ padding: '0.5rem' }}>Deadline</CardBody>
-						</Card>
-					</Col>
-				</Row>
+				{currentProjects.length !== 0 ? (
+					<Row className="d-none d-md-flex" style={{ marginBottom: '1rem', textAlign: 'center' }}>
+						<Col md="9">
+							<Card style={{ backgroundColor: 'rgb(182, 0, 214)' }}>
+								<CardBody style={{ padding: '0.5rem' }}>Project</CardBody>
+							</Card>
+						</Col>
+						<Col md="3">
+							<Card style={{ backgroundColor: 'rgb(182, 0, 214)' }}>
+								<CardBody style={{ padding: '0.5rem' }}>Deadline</CardBody>
+							</Card>
+						</Col>
+					</Row>
+				) : null}
+
 				{currentProjects.map((item, i) => (
 					<Row className="currentProjectsRow" style={{ marginBottom: '0.5rem' }}>
 						<Col md="9">
@@ -84,16 +109,43 @@ export class ProjectComponent extends Component {
 								</CardBody>
 							</Card>
 							<Card>
-								<Input style={{ textAlign: 'center' }} placeholder="Enter Project Name" />
-								<Row style={{ marginLeft: 0, marginRight: 0 }}>
-									<Button color="primary" style={{ width: '50%' }}>
-										Completed
-									</Button>
-
-									<Button style={{ color: 'white', width: '50%' }} color="danger">
-										Delete
-										{/* <i class="fa fa-trash-o" aria-hidden="true" /> */}
-									</Button>
+								<Input
+									name="name"
+									onChange={this.onChange}
+									style={{ textAlign: 'center' }}
+									placeholder="Enter Project Name"
+								/>
+								<Row
+									className="submitCard"
+									style={{ marginLeft: 0, marginRight: 0, wordWrap: 'normal' }}
+								>
+									<Col xs="6" style={{ padding: 0 }}>
+										<Form onSubmit={this.onCompleteSubmit.bind(this, item.name, i)}>
+											<Button
+												color="primary"
+												style={{ width: '100%', height: '100%', padding: '0.3rem' }}
+												active={this.state.name === item.name}
+											>
+												Completed
+											</Button>
+										</Form>
+									</Col>
+									<Col xs="6" style={{ padding: 0 }}>
+										<Form onSubmit={this.onDeleteSubmit.bind(this, item.name, i)}>
+											<Button
+												active={this.state.name === item.name}
+												style={{
+													color: 'white',
+													width: '100%',
+													height: '100%',
+													padding: '0.3rem'
+												}}
+												color="danger"
+											>
+												Delete
+											</Button>
+										</Form>
+									</Col>
 								</Row>
 							</Card>
 						</Col>
@@ -131,6 +183,6 @@ const mapStateToProps = (state) => ({
 	projects: state.projects
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { deleteProject, completedProject };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectComponent);

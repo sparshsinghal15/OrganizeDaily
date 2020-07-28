@@ -18,7 +18,10 @@ function App() {
 		<Provider store={store}>
 			<Router>
 				<div className="App">
-					<AppNavbarComponent />
+					<span id="navbarLink">
+						<AppNavbarComponent />
+					</span>
+
 					<Route exact path="/" component={HomeComponent} />
 					<Container>
 						<Route path="/project" component={ProjectComponent} />

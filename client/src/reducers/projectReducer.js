@@ -1,4 +1,4 @@
-import { CREATE_PROJECT } from '../actions/types';
+import { CREATE_PROJECT, DELETE_PROJECT, COMPLETED_PROJECT } from '../actions/types';
 
 const intialState = {
 	currentProjects: [
@@ -80,6 +80,22 @@ export default function(state = intialState, action) {
 			return {
 				...state,
 				currentProjects: currentProjects
+			};
+		case DELETE_PROJECT:
+			return {
+				...state,
+				currentProjects: state.currentProjects.filter((item, i) => i !== action.payload)
+			};
+		case COMPLETED_PROJECT:
+			const name = state.currentProjects[action.payload].name;
+			const description = state.currentProjects[action.payload].description;
+			const newCompletedProject = { name: name, description: description };
+			const completedProjects = Object.assign([], state.completedProjects);
+			completedProjects.push(newCompletedProject);
+
+			return {
+				...state,
+				completedProjects: completedProjects
 			};
 		default:
 			return state;

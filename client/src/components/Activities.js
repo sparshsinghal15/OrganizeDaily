@@ -54,15 +54,26 @@ class ActivitiesComponent extends Component {
 				<Row>
 					<Col>
 						{this.props.activity.items.map((item, i) => (
-							<Card
-								onClick={this.onClick.bind(this, item.name)}
-								className="textCard"
-								style={{ marginBottom: '0.5rem', padding: '0.5rem' }}
-							>
-								<Button onClick={this.onClickDelete.bind(this, i)} className="trash" color="danger">
-									<i style={{ color: 'white' }} class="fa fa-trash-o" aria-hidden="true" />
-								</Button>
-								<CardText>{item.name}</CardText>
+							<Card className="textCard" style={{ marginBottom: '0.5rem', padding: '0.5rem' }}>
+								<Row style={{ width: '100%' }}>
+									<Col xs="2" style={{ padding: 0 }}>
+										<Button
+											onClick={this.onClickDelete.bind(this, i)}
+											className="trash"
+											color="danger"
+										>
+											<i style={{ color: 'white' }} class="fa fa-trash-o" aria-hidden="true" />
+										</Button>
+									</Col>
+									<Col
+										style={{ cursor: 'pointer', padding: 'auto 0' }}
+										onClick={this.onClick.bind(this, item.name)}
+										xs="10"
+										className="selectedColumn"
+									>
+										<CardText>{item.name}</CardText>
+									</Col>
+								</Row>
 							</Card>
 						))}
 					</Col>

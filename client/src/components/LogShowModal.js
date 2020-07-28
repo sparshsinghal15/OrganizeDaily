@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 import { deleteLog } from '../actions/logs';
 
 class LogShowModal extends Component {
-	constructor(props) {
-		super(props);
-	}
 	static propTypes = {
 		deleteLog: PropTypes.func.isRequired
 	};
