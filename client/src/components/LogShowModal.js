@@ -7,24 +7,26 @@ import { deleteLog } from '../actions/logs';
 
 class LogShowModal extends Component {
 	static propTypes = {
-		deleteLog: PropTypes.func.isRequired
+		deleteLog: PropTypes.func.isRequired,
+		logs: PropTypes.func.isRequired
 	};
 	onClick = (i) => {
 		this.props.deleteLog(i);
 		this.props.toggle();
 	};
 	render() {
+		const note = this.props.logs.notes[this.props.i];
 		return (
 			<div>
 				<Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
-					<ModalHeader toggle={this.props.toggle}>{this.props.mood}</ModalHeader>
+					<ModalHeader toggle={this.props.toggle}>{note.title}</ModalHeader>
 					<ModalBody>
-						{this.props.desc}
+						{note.entry}
 						<br />
 						<hr />
 						<div>
 							<span style={{ fontWeight: 600, textTransform: 'uppercase' }}>
-								{this.props.date + ' ' + this.props.year}
+								{note.date + ' ' + note.year}
 							</span>
 							<Button
 								style={{ float: 'right' }}
@@ -41,7 +43,9 @@ class LogShowModal extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+	logs: state.logs
+});
 
 const mapDispatchToProps = {
 	deleteLog

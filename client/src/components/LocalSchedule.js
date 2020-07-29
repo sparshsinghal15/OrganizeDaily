@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardText, Input, Form, Button } from 'reactstrap';
 import { startingTimeChange, onChangeMin, onChangeHr, deleteLocalActivity } from '../actions/localSchedule';
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import './css/localSchedule.scss';
 
 const cardStyle = {
@@ -34,7 +35,6 @@ class LocalScheduleComponent extends Component {
 		this.props.deleteLocalActivity(i);
 	};
 	render() {
-		// console.log(this.props.schedule);
 		return (
 			<div className="localSchedule">
 				<h1
@@ -81,73 +81,78 @@ class LocalScheduleComponent extends Component {
 							</Card>
 						</Col>
 					</Row>
-					{this.props.schedule.items.map((item, i) => {
-						return (
-							<Row
-								className="justify-content-around flex-nowrap"
-								style={{
-									marginBottom: '1vmin'
-								}}
-							>
-								<Col style={{ padding: 0, paddingRight: '1vmin' }} xs="2">
-									<Input
+					<TransitionGroup className="localScheduleList">
+						{this.props.schedule.items.map((item, i) => {
+							return (
+								<CSSTransition key={item.id} timeout={300} classNames="fade">
+									<Row
+										className="justify-content-around flex-nowrap"
 										style={{
-											height: '100%'
-										}}
-										placeholder="H"
-										min={0}
-										max={24}
-										type="number"
-										step="1"
-										onChange={this.onChangehr.bind(this, i)}
-									/>
-								</Col>
-								<Col style={{ padding: 0 }} xs="2">
-									<Input
-										style={{
-											height: '100%'
-										}}
-										placeholder="M"
-										min={0}
-										max={59}
-										type="number"
-										step="5"
-										onChange={this.onChangeMin.bind(this, i)}
-									/>
-								</Col>
-
-								<Col className=" pr-3" xs="6">
-									<Card className="textCard">
-										<CardText>{item.name}</CardText>
-										{this.props.schedule.items.length !== 1 ? (
-											<button onClick={this.onClickDelete.bind(this, i)} style={{}}>
-												<i class="fa fa-times" aria-hidden="true" />
-											</button>
-										) : null}
-									</Card>
-								</Col>
-
-								<Col style={{ padding: 0 }} xs="2">
-									<Card style={{ padding: '0.5rem', height: '100%' }}>
-										<CardText style={{ margin: 'auto' }}>{item.time}</CardText>
-									</Card>
-								</Col>
-
-								<Col style={{ padding: 0, width: '10%' }} xs="1">
-									<Card
-										style={{
-											padding: '0.5rem',
-											backgroundColor: 'rgba(130, 127, 126, 0.8)',
-											color: 'white',
-											height: '100%'
+											marginBottom: '1vmin'
 										}}
 									>
-										<CardText>{item.interval}</CardText>
-									</Card>
-								</Col>
-							</Row>
-						);
-					})}
+										<Col style={{ padding: 0, paddingRight: '1vmin' }} xs="2">
+											<Input
+												style={{
+													height: '100%'
+												}}
+												placeholder="O"
+												min={0}
+												max={24}
+												type="number"
+												step="1"
+												onChange={this.onChangehr.bind(this, i)}
+											/>
+										</Col>
+										<Col style={{ padding: 0 }} xs="2">
+											<Input
+												style={{
+													height: '100%'
+												}}
+												placeholder="O"
+												min={0}
+												max={59}
+												type="number"
+												step="5"
+												onChange={this.onChangeMin.bind(this, i)}
+											/>
+										</Col>
+
+										<Col className=" pr-3" xs="6">
+											<Card className="textCard">
+												<CardText>{item.name}</CardText>
+												{this.props.schedule.items.length !== 1 ? (
+													<button onClick={this.onClickDelete.bind(this, item.id)} style={{}}>
+														<i class="fa fa-times" aria-hidden="true" />
+													</button>
+												) : null}
+											</Card>
+										</Col>
+
+										<Col style={{ padding: 0 }} xs="2">
+											<Card style={{ padding: '0.5rem', height: '100%' }}>
+												<CardText style={{ margin: 'auto' }}>{item.time}</CardText>
+											</Card>
+										</Col>
+
+										<Col style={{ padding: 0, width: '10%' }} xs="1">
+											<Card
+												style={{
+													padding: '0.5rem',
+													backgroundColor: 'rgba(130, 127, 126, 0.8)',
+													color: 'white',
+													height: '100%'
+												}}
+											>
+												<CardText>{item.interval}</CardText>
+											</Card>
+										</Col>
+									</Row>
+								</CSSTransition>
+							);
+						})}
+					</TransitionGroup>
+					
 					<Row
 						className="justify-content-xs-start justify-content-md-center flex-nowrap"
 						style={{ marginTop: '4vmin' }}

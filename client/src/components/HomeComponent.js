@@ -4,74 +4,71 @@ import { Row, Col, Card, CardImg, Container, Button } from 'reactstrap';
 import './css/home.scss';
 import FooterComponent from './FooterComponent';
 
+import schedule from '../assets/images/schedule.jpg';
+import diary from '../assets/images/diary.jpg';
+import project from '../assets/images/project.jpg';
+
 export default class HomeComponent extends Component {
 	render() {
 		return (
 			<div>
 				<Container>
 					<QuoteComponent />
+
 					<div className="home-component" style={{ color: 'white', marginTop: '5vmin' }}>
 						<h1>Want to Organize your Daily life?</h1>
 
 						<Row>
 							<Col xs="12" md="6">
 								<Card style={{ border: 'none', height: '100%' }}>
-									<CardImg
-										style={{ height: '100%' }}
-										src="https://images.tmcnet.com/tmc/misc/articles/image/2018-aug/bigstock--animated-schedule-supersize.jpg"
-									/>
+									<CardImg style={{ height: '100%', borderRadius: '15px' }} src={schedule} />
 								</Card>
 							</Col>
 							<Col xs="12" md="6">
-								<h2 className="h2first" style={{ color: 'rgb(166, 162, 154)' }}>
+								<h2 className="h2first">
 									<a href="/schedule">Schedule your day for maximum productiivity</a>
 								</h2>
-								<p style={{ color: 'rgb(27, 119, 194)' }}>
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-									Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-									unknown printer took a galley of type and scrambled it to make a type specimen book.
-									It has survived not only five centuries, but also the leap into electronic
+								<p>
+									Make a prefect schedule for the day. Just select the time at which your day starts,
+									the activity from your saved activities list and the duration for which you wish to
+									perform the activity. You can update your activites list according to the activites
+									you perform more often.
 								</p>
 							</Col>
 						</Row>
 
 						<Row className="flex-md-row-reverse">
 							<Col xs="12" md="6" className="colSelected">
-								<CardImg
-									style={{ height: '100%', borderRadius: '15px' }}
-									src="https://image.freepik.com/free-photo/white-blank-open-notepad-book-concept-background-with-office-supplies_102130-10.jpg"
-								/>
+								<CardImg style={{ height: '100%', borderRadius: '15px' }} src={diary} />
 							</Col>
 							<Col xs="12" md="6">
 								<h2 className="h2second">
 									<a href="/log">Your Personal Diary</a>
 								</h2>
-								<p style={{ color: 'rgb(179, 2, 189)' }}>
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-									Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-									unknown printer took a galley of type and scrambled it to make a type specimen book.
-									It has survived not only five centuries, but also the leap into electronic
+								<p>
+									A place to confess your struggles and fears without judgment or punishment. It
+									likely feels good to get all of those thoughts and feelings out of your head and
+									down on paper. It's simply writing down your thoughts and feelings to understand
+									them more clearly. And if you struggle with stress, depression, or anxiety, keeping
+									a journal is a great idea.
 								</p>
 							</Col>
 						</Row>
 
 						<Row>
 							<Col xs="12" md="6" className="colSelected">
-								<CardImg
-									style={{ height: '100%', borderRadius: '25px' }}
-									src="https://surecomamerica.files.wordpress.com/2020/04/lavorare-da-casa-02_opt.jpg?w=695"
-								/>
+								<CardImg style={{ height: '100%', borderRadius: '25px' }} src={project} />
 							</Col>
 							<Col xs="12" md="6">
 								<h2 className="h2third">
 									<a href="/project">Organize your Projects</a>
 								</h2>
 
-								<p style={{ color: 'rgb(255, 135, 43)' }}>
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-									Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-									unknown printer took a galley of type and scrambled it to make a type specimen book.
-									It has survived not only five centuries, but also the leap into electronic
+								<p>
+									Does it happen to you that so you have many projects at the same time and after a
+									while you loose track of them? Well the problem is solved here. Keep a list of the
+									projects you are working on, with the deadline and if the project is approaching its
+									deadline we will notify you.
 								</p>
 							</Col>
 						</Row>

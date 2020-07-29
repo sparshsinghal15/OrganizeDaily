@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { Form, Row, Col, Card, CardText, Input, Button } from 'reactstrap';
 import './css/activities.scss';
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 import { createLocalActivity } from '../actions/localSchedule';
 import { createActivity, deleteActivity } from '../actions/activities';
@@ -53,12 +54,14 @@ class ActivitiesComponent extends Component {
 				</Form>
 				<Row>
 					<Col>
-						{this.props.activity.items.map((item, i) => (
+					<TransitionGroup>
+					{this.props.activity.items.map((item) => (
+						<CSSTransition key={item.id} timeout={300} classNames="fade">
 							<Card className="textCard" style={{ marginBottom: '0.5rem', padding: '0.5rem' }}>
 								<Row style={{ width: '100%' }}>
 									<Col xs="2" style={{ padding: 0 }}>
 										<Button
-											onClick={this.onClickDelete.bind(this, i)}
+											onClick={this.onClickDelete.bind(this, item.id)}
 											className="trash"
 											color="danger"
 										>
@@ -75,7 +78,11 @@ class ActivitiesComponent extends Component {
 									</Col>
 								</Row>
 							</Card>
+						</CSSTransition>
+							
 						))}
+					</TransitionGroup>
+						
 					</Col>
 				</Row>
 			</div>

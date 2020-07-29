@@ -5,6 +5,7 @@ import localScheduleReducer from './localScheduleReducer';
 import activitiesReducer from './activitiesReducer';
 import logReducer from './logReducer';
 import projectReducer from './projectReducer';
+import errorReducer from './errorReducer';
 
 export default combineReducers({
 	bored: boredReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
 	localSchedule: localScheduleReducer,
 	activities: activitiesReducer,
 	logs: logReducer,
-	projects: projectReducer
+	projects: projectReducer,
+	errors: errorReducer
 });

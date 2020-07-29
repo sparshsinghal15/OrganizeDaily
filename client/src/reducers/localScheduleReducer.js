@@ -5,12 +5,13 @@ import {
 	CREATE_LOCALACTIVITY,
 	DELETE_LOCALACTIVITY
 } from '../actions/types';
+import { v1 as uuid } from 'uuid';
 
 let initialState = {
 	items: [
-		{ name: 'Web Development', hr: 0, min: 0, time: '00:00', interval: 'AM' },
-		{ name: 'Web Development', hr: 0, min: 0, time: '00:00', interval: 'AM' },
-		{ name: 'Web Development', hr: 0, min: 0, time: '00:00', interval: 'AM' }
+		{ id: uuid(), name: 'Web Development', hr: 0, min: 0, time: '00:00', interval: 'AM' },
+		{ id: uuid(), name: 'Exercise', hr: 0, min: 0, time: '00:00', interval: 'AM' },
+		{ id: uuid(), name: 'Football', hr: 0, min: 0, time: '00:00', interval: 'AM' }
 	],
 	hr: 24,
 	min: 0,
@@ -86,7 +87,7 @@ export default function(state = initialState, action) {
 			};
 
 		case CREATE_LOCALACTIVITY:
-			item = { name: action.payload, hr: 0, min: 0, time: '00:00', interval: 'AM' };
+			item = { id: uuid(), name: action.payload, hr: 0, min: 0, time: '00:00', interval: 'AM' };
 			items = Object.assign([], state.items);
 			items.push(item);
 
@@ -96,7 +97,7 @@ export default function(state = initialState, action) {
 			};
 		case DELETE_LOCALACTIVITY:
 			items = Object.assign([], state.items);
-			items = items.filter((item, i) => i !== action.payload);
+			items = items.filter((item) => item.id !== action.payload);
 			return {
 				...state,
 				items: items

@@ -5,28 +5,28 @@ const initialState = {
 		{
 			title: 'Happy',
 			year: '2020',
-			date: '27 September',
+			date: '29 July',
 			entry:
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book."
 		},
 		{
-			title: 'Happy',
+			title: 'Excited',
 			year: '2020',
-			date: '27 September',
+			date: '25 July',
 			entry:
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book."
 		},
 		{
-			title: 'Happy',
+			title: 'Amazed',
 			year: '2020',
-			date: '27 September',
+			date: '24 July',
 			entry:
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book."
 		},
 		{
-			title: 'Happy',
+			title: 'Screamed',
 			year: '2020',
-			date: '27 September',
+			date: '23 July',
 			entry:
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book."
 		}
@@ -56,7 +56,7 @@ export default function(state = initialState, action) {
 			today = dd + ' ' + mm;
 			const log = { title: action.payload.title, year: yyyy, date: today, entry: action.payload.log };
 			const logs = Object.assign([], state.notes);
-			logs.push(log);
+			logs.unshift(log);
 			return {
 				...state,
 				notes: logs

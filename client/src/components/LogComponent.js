@@ -15,9 +15,10 @@ class LogComponent extends Component {
 	static propTypes = {
 		logs: PropTypes.object.isRequired
 	};
-	onClickShowLogToggle = () => {
+	toggle = (i) => {
 		this.setState({
 			...this.state,
+			i: i,
 			showIsOpen: !this.state.showIsOpen
 		});
 	};
@@ -28,7 +29,6 @@ class LogComponent extends Component {
 			<div
 				className="logComponent"
 				style={{
-					// background: 'rgba(255, 255, 255, 0.2)',
 					padding: '2vmin',
 					height: '80vh',
 					borderRadius: '10px'
@@ -45,31 +45,32 @@ class LogComponent extends Component {
 							</span>
 						</h1>
 						<hr />
-						<Row style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+						<Row className="logs" style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
 							{notes.length !== 0 ? (
 								notes.map((item, i) => (
 									<Col style={{ marginBottom: '1.7rem' }} lg="4" md="6" xs="12">
-										<Card onClick={this.onClickShowLogToggle}>
+										<Card onClick={this.toggle.bind(this, i)}>
 											<CardBody>
 												<h2>{item.date}</h2>
-												<CardText>{item.entry.substr(0, 120)} ...</CardText>
+												<CardText>
+													{item.entry.substr(0, 120)}
+													{item.entry.length >= 120 ? <span> ...</span> : null}
+												</CardText>
 											</CardBody>
 										</Card>
-										<LogShowModalComponent
-											toggle={this.onClickShowLogToggle}
-											isOpen={this.state.showIsOpen}
-											date={item.date}
-											year={item.year}
-											desc={item.entry}
-											mood={item.title}
-											i={i}
-										/>
 									</Col>
 								))
 							) : null}
+							{this.state.showIsOpen ? (
+								<LogShowModalComponent
+									toggle={this.toggle}
+									isOpen={this.state.showIsOpen}
+									i={this.state.i}
+								/>
+							) : null}
 						</Row>
 					</Col>
-					<Col className="extrasCol" sm="6" md="4" lg="3">
+					<Col className="extrasCol mb-3" sm="6" md="4" lg="3">
 						<BoredComponent />
 					</Col>
 				</Row>

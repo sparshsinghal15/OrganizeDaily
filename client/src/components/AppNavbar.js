@@ -27,7 +27,7 @@ export default class AppNavbar extends Component {
 					<Container className="">
 						<NavbarBrand
 							style={{
-								fontWeight: 600,
+								fontWeight: 400,
 								fontFamily: "'Merriweather', serif",
 								fontSize: '1.5rem',
 								padding: '0.5rem'

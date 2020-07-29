@@ -52,6 +52,7 @@ export class createProjectModal extends Component {
 									name="title"
 									id="name"
 									placeholder="Title / Mood"
+									required
 								/>
 							</FormGroup>
 							<FormGroup>
@@ -62,6 +63,7 @@ export class createProjectModal extends Component {
 									name="log"
 									id="log"
 									placeholder="My Awesome Day"
+									required
 								/>
 							</FormGroup>
 							<FormGroup>

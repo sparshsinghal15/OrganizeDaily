@@ -7,6 +7,7 @@ import './css/projectComponent.scss';
 import CreateProjectModal from './CreateProjectModal';
 
 import { deleteProject, completedProject } from '../actions/project';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 export class ProjectComponent extends Component {
 	state = {
@@ -83,74 +84,78 @@ export class ProjectComponent extends Component {
 						</Col>
 					</Row>
 				) : null}
-
-				{currentProjects.map((item, i) => (
-					<Row className="currentProjectsRow" style={{ marginBottom: '0.5rem' }}>
-						<Col md="9">
-							<Card>
-								<CardBody>
-									<h2>{item.name}</h2>
-									<CardText>{item.description}</CardText>
-								</CardBody>
-							</Card>
-						</Col>
-						<Col md="3">
-							<Card style={{ height: '50%' }}>
-								<CardBody>
-									<CardText
-										style={{
-											textAlign: 'center',
-											fontWeight: 400,
-											fontSize: '1.3rem'
-										}}
-									>
-										{item.deadline}
-									</CardText>
-								</CardBody>
-							</Card>
-							<Card>
-								<Input
-									name="name"
-									onChange={this.onChange}
-									style={{ textAlign: 'center' }}
-									placeholder="Enter Project Name"
-								/>
-								<Row
-									className="submitCard"
-									style={{ marginLeft: 0, marginRight: 0, wordWrap: 'normal' }}
-								>
-									<Col xs="6" style={{ padding: 0 }}>
-										<Form onSubmit={this.onCompleteSubmit.bind(this, item.name, i)}>
-											<Button
-												color="primary"
-												style={{ width: '100%', height: '100%', padding: '0.3rem' }}
-												active={this.state.name === item.name}
-											>
-												Completed
-											</Button>
-										</Form>
-									</Col>
-									<Col xs="6" style={{ padding: 0 }}>
-										<Form onSubmit={this.onDeleteSubmit.bind(this, item.name, i)}>
-											<Button
-												active={this.state.name === item.name}
+				<TransitionGroup>
+					{currentProjects.map((item, i) => (
+						<CSSTransition key={item.id} timeout={300} classNames="fade">
+							<Row className="currentProjectsRow" style={{ marginBottom: '0.5rem' }}>
+								<Col className="showCaseProject" md="9">
+									<Card>
+										<CardBody>
+											<h2>{item.name}</h2>
+											<CardText>{item.description}</CardText>
+										</CardBody>
+									</Card>
+								</Col>
+								<Col md="3">
+									<Card style={{ height: '50%' }}>
+										<CardBody>
+											<CardText
 												style={{
-													color: 'white',
-													width: '100%',
-													height: '100%',
-													padding: '0.3rem'
+													textAlign: 'center',
+													fontWeight: 400,
+													fontSize: '1.3rem'
 												}}
-												color="danger"
 											>
-												Delete
-											</Button>
-										</Form>
-									</Col>
-								</Row>
-							</Card>
-						</Col>
-					</Row>
-				))}
+												{item.deadline}
+											</CardText>
+										</CardBody>
+									</Card>
+									<Card>
+										<Input
+											name="name"
+											onChange={this.onChange}
+											style={{ textAlign: 'center' }}
+											placeholder="Enter Project Name"
+										/>
+										<Row
+											className="submitCard"
+											style={{ marginLeft: 0, marginRight: 0, wordWrap: 'normal' }}
+										>
+											<Col xs="6" style={{ padding: 0 }}>
+												<Form onSubmit={this.onCompleteSubmit.bind(this, item.name, item.id)}>
+													<Button
+														color="primary"
+														style={{ width: '100%', height: '100%', padding: '0.3rem' }}
+														active={this.state.name === item.name}
+													>
+														Completed
+													</Button>
+												</Form>
+											</Col>
+											<Col xs="6" style={{ padding: 0 }}>
+												<Form onSubmit={this.onDeleteSubmit.bind(this, item.name, item.id)}>
+													<Button
+														active={this.state.name === item.name}
+														style={{
+															color: 'white',
+															width: '100%',
+															height: '100%',
+															padding: '0.3rem'
+														}}
+														color="danger"
+													>
+														Delete
+													</Button>
+												</Form>
+											</Col>
+										</Row>
+									</Card>
+								</Col>
+							</Row>
+						</CSSTransition>
+					))}
+				</TransitionGroup>
+
 				<h2 style={{ textAlign: 'center', marginTop: '1rem' }}>
 					<CreateProjectModal />
 				</h2>
@@ -164,11 +169,20 @@ export class ProjectComponent extends Component {
 				<hr />
 				<Row style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
 					{completedProjects.map((item, i) => (
-						<Col className="currentProjectsRow" style={{ marginBottom: '1.7rem' }} lg="3" md="4" xs="12">
+						<Col
+							className="currentProjectsRow showCaseProject"
+							style={{ marginBottom: '1.7rem' }}
+							lg="3"
+							md="4"
+							xs="12"
+						>
 							<Card>
 								<CardBody>
 									<h2>{item.name}</h2>
-									<CardText>{item.description.substr(0, 120)} ...</CardText>
+									<CardText>
+										{item.description.substr(0, 120)}
+										{item.description.length >= 120 ? <span> ...</span> : null}
+									</CardText>
 								</CardBody>
 							</Card>
 						</Col>
